@@ -64,24 +64,41 @@ SQL_BASIC 정규 과제는 매주 정해진 분량의 `초보자를 위한 BigQu
 ## 01.
 
 ```
-개념 이름:
+개념 이름: DATE
 개념 설명:
-예시 쿼리:
+-날짜만 표시하는 데이터
+-시간이나 분,초가 없이 일자까지만 나타냄
+-ex) 2023-12-31
+예시 쿼리:2023-12-31
 ```
 
 ## 02.
 
 ```
-개념 이름:
+개념 이름:DATETIME
 개념 설명:
-예시 쿼리:
+-DATE와 TIME까지 표시하는 데이터
+-DATE+TIME 형태임
+-Time Zone 정보 없음
+-ex) 2023-12-31 14:00:00
+예시 쿼리:2023-12-31 14:00:00
 ```
 
 ## (선택) 03.
 
 ```
-개념 이름:
+개념 이름:TIMESTAMP
 개념 설명:
+- UTC부터 경과한 시간을 나타내는 값
+- TIME ZONE정보를 가지고 있음
+-ex) 2023-12-31 14:00:00 UTC -> UTC로부터 이만큼이 지난 데이터다 라는 뜻
+- TIMESTAMP_MILLIS라는 함수를 쓰면 MILLISECOND를 TIMESTAMP로 바꿀 수 있음
+- TIMESTAMP로 시간이 저장된 경우가 많음
+- TIMESTAMP와 DATETIME 변환을 해야하는 경우가 많음 DATETIME(TIMESTAMP정보, ZONE정보) 이렇게하면 시간데이터끼리 변환할 수 있음
+- TIMESTAMP와 DATETIME 구분 방법
+  TIMESTAMP->UTC라고 나옴/한국시간-9시간/오전9시가 UTC기준 0시이다
+  DATETIME-> T라고 나옴/한국시간과 동일
+  CURRENT_TIMESTAMP->현재의 TIMESTAMP 알려주는 함수
 헷갈린 점:
 ```
 
@@ -89,11 +106,7 @@ SQL_BASIC 정규 과제는 매주 정해진 분량의 `초보자를 위한 BigQu
 
 # 2️⃣ 수행 인증란
 
-아래 중 하나 이상을 첨부해주세요.
-
-- 강의 수강 화면 캡처
-- 문제 풀이 정답 화면 캡처
-- SQL 실행 결과 화면 캡처
+<img width="1067" height="654" alt="image" src="https://github.com/user-attachments/assets/f1723c27-ce7e-4689-a246-1494c3a4a469" />
 
 ---
 
@@ -108,12 +121,12 @@ SQL_BASIC 정규 과제는 매주 정해진 분량의 `초보자를 위한 BigQu
 풀이 과정:
 
 ```
-- 장기/단기 대여를 나눈 기준:
-- 사용한 날짜 계산 방식:
-- CASE WHEN으로 만든 컬럼:
+- 장기/단기 대여를 나눈 기준:대여기간이 30일 이상이면 장기대여, 30일 미만이면 단기대여
+- 사용한 날짜 계산 방식: DATEDIFF(END_DATE,START_DATE)+1로 시작일을 포함한 대여 일수 계산
+- CASE WHEN으로 만든 컬럼:장기대여 또는 단기대여를 표시하는 컬럼
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+<img width="446" height="262" alt="image" src="https://github.com/user-attachments/assets/f2af26eb-6de9-45f4-9b6c-9683409ebe8a" />
 
 ## 🧩 문제 2
 
@@ -122,12 +135,13 @@ SQL_BASIC 정규 과제는 매주 정해진 분량의 `초보자를 위한 BigQu
 풀이 과정:
 
 ```
-- 문제에서 요구한 연도:
-- 사용한 날짜 조건:
-- 집계한 대상:
+- 문제에서 요구한 연도:2021년
+- 사용한 날짜 조건:YEAR(TIME)=2021
+- 집계한 대상:2021년에 잡은 모든 물고기의 수
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+<img width="308" height="237" alt="image" src="https://github.com/user-attachments/assets/a7d5cd2b-4b04-4d6d-ba84-e1b461385f7d" />
+
 
 ## 🧩 문제 3
 
@@ -136,13 +150,13 @@ SQL_BASIC 정규 과제는 매주 정해진 분량의 `초보자를 위한 BigQu
 풀이 과정:
 
 ```
-- 날짜 조건:
-- CASE WHEN으로 바꾼 값:
-- ELSE에 해당하는 경우:
-- 정렬 기준:
+- 날짜 조건: CREATED_DATE='2022-10-05'
+- CASE WHEN으로 바꾼 값:SALE->판매중 RESERVED->예약중 DONE->거래완
+- ELSE에 해당하는 경우:ELSE를 생략했으므로 위 조건에 해당하지 않으면 NULL로 표시
+- 정렬 기준:게시글 ID기준 내림차순
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+<img width="331" height="266" alt="image" src="https://github.com/user-attachments/assets/6078f59e-82ef-4924-8f89-f91d1542162a" />
 
 ## 🧩 문제 4
 
@@ -151,22 +165,22 @@ SQL_BASIC 정규 과제는 매주 정해진 분량의 `초보자를 위한 BigQu
 풀이 과정:
 
 ```
-- GROUP BY 기준:
-- 평균을 계산한 방식:
-- HAVING에 사용한 조건:
-- 처음 헷갈렸던 점:
+- GROUP BY 기준: 자동차 ID 별로 묶음
+- 평균을 계산한 방식:DATEDIFF(END_DATE,START_DATE)+1로 대여 일수를 구한 뒤 평균을 계산하고 소수점 첫째 자리까지 반올림
+- HAVING에 사용한 조건:평균 대여 기간이 7일 이상인 자동차만 선택
+- 처음 헷갈렸던 점:자동차별로 계산한 평균에 조건을 걸때는 WHERE가 아니라 HAVING을 사용한다는것
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+<img width="430" height="286" alt="image" src="https://github.com/user-attachments/assets/a6547495-b182-4732-a5ee-3a1beb7f8c55" />
 
 ---
 
 # 4️⃣ 이번 주 회고
 
 ```
-1. 날짜 함수 중 가장 헷갈린 함수:
-2. CASE WHEN을 사용할 때 기억해야 할 문법:
-3. 날짜/시간 데이터나 조건문을 활용해보고 싶은 분석 상황:
+1. 날짜 함수 중 가장 헷갈린 함수:DATEDIFF함수는 종료일과 시작일의 차이를 계산하며 시작일까지 포함하려면 +1을 해야한다는점이 헷갈렸다
+2. CASE WHEN을 사용할 때 기억해야 할 문법:CASE WHEN 조건 THEN 결과 ELSE 나머지 결과 END 형태로 작성한다
+3. 날짜/시간 데이터나 조건문을 활용해보고 싶은 분석 상황: 교통사고를 발생 시간에 따라 출근 퇴근 시간대로 나누고 사고 건수를 비교해보고 싶다
 ```
 
 수고하셨습니다!
