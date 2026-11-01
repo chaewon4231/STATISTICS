@@ -68,17 +68,35 @@ JOIN은 여러 테이블을 연결해서 분석 질문에 답하기 위해 반�
 ## 01.
 
 ```
-개념 이름:
+개념 이름: JOIN
 개념 설명:
+- n개의 테이블이 있을 때 공통적으로 가지는 key값을 기준으로 테이블을 합치는 것
+- 컬럼이 계속 추가됨
+- 여러 테이블 join이 가능함
+- 헷갈리지 않게 단계적으로 join하는게 중요
+- 보통 id 값을 key로 많이 사용
+- 여러가지 데이터를 활용해서 분석해야하기 때문에 join을 해야함
 예시 쿼리:
+SELECT
+  A.COL1,
+  A.COL2,
+  B.COL11,
+  B.COL12
+FROM table1 AS A
+LEFT JOIN table2 AS B
+ON A.KEY=B.KEY
 ```
 
 ## 02.
 
 ```
-개념 이름:
+개념 이름: NULL
 개념 설명:
-예시 쿼리:
+- 값이 없음, 알 수 없음을 나타내는것
+- 0이나 공백과 다르게 값이 아예 없는 것
+- JOIN에선 연결할 값이 없을 경우에 나타난다
+- LEFT JOIN 할때 조건에 맞는 값이 없어서 NULL이 나올 수 있음
+예시 쿼리: X
 ```
 
 ## (선택) 03.
@@ -95,9 +113,8 @@ JOIN은 여러 테이블을 연결해서 분석 질문에 답하기 위해 반�
 
 아래 중 하나 이상을 첨부해주세요.
 
-- 강의 수강 화면 캡처
-- JOIN 문제 풀이 정답 화면 캡처
-- JOIN 전후 결과 row 수를 비교한 캡처 또는 메모
+<img width="506" height="403" alt="image" src="https://github.com/user-attachments/assets/3e88efa5-c06a-490e-be7f-d6676be7c4fe" />
+
 
 ---
 
@@ -112,12 +129,14 @@ JOIN은 여러 테이블을 연결해서 분석 질문에 답하기 위해 반�
 풀이 과정:
 
 ```
-- 사용한 테이블:
-- JOIN key:
-- 날짜를 출력한 형식:
+- 사용한 테이블: BOOK, AUTHOR
+- JOIN key:AUTHOR_ID
+- 날짜를 출력한 형식:YYYY-MM-DD 형식으로 출력
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+
+<img width="334" height="235" alt="image" src="https://github.com/user-attachments/assets/e7ba6991-389a-454b-8c3b-04db02568930" />
+
 
 ## 🧩 문제 2
 
@@ -126,12 +145,13 @@ JOIN은 여러 테이블을 연결해서 분석 질문에 답하기 위해 반�
 풀이 과정:
 
 ```
-- 연결한 테이블:
-- JOIN key:
-- 집계한 값:
+- 연결한 테이블: PRODUCT, OFFLINE_SALE
+- JOIN key: PRODUCT_ID
+- 집계한 값: 상품코드별 총매출
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+<img width="303" height="218" alt="image" src="https://github.com/user-attachments/assets/2f692ee9-fc35-4e8a-8695-8b42ac3644cc" />
+
 
 ## 🧩 문제 3
 
@@ -140,12 +160,12 @@ JOIN은 여러 테이블을 연결해서 분석 질문에 답하기 위해 반�
 풀이 과정:
 
 ```
-- 기준이 되는 왼쪽 테이블:
-- LEFT JOIN이 필요한 이유:
-- NULL이 발생하는 경우:
+- 기준이 되는 왼쪽 테이블: ANIMAL_OUTS
+- LEFT JOIN이 필요한 이유: 입소 기록이 없는 동물도 입양 기록에서 유지하기 위해서 
+- NULL이 발생하는 경우: 같은 ANIMAL_ID가 ANIMAL_INS에 없어 연결되는 입소 기록이 없는 경우에 NULL이 발생한
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+<img width="318" height="214" alt="image" src="https://github.com/user-attachments/assets/62b7be8f-aef3-422b-ab6c-eeb12a1ac84c" />
 
 ## 🧩 문제 4
 
@@ -154,13 +174,14 @@ JOIN은 여러 테이블을 연결해서 분석 질문에 답하기 위해 반�
 풀이 과정:
 
 ```
-- 사용한 테이블:
-- JOIN key:
-- 비교한 날짜 컬럼:
-- 정렬 기준:
+- 사용한 테이블: ANIMAL_INS, ANIMAL_OUTS
+- JOIN key:ANIMAL_ID
+- 비교한 날짜 컬럼: O.DATETIME<I.DATETIME
+- 정렬 기준: I.DATETIME 오름차순
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+<img width="271" height="189" alt="image" src="https://github.com/user-attachments/assets/d7b7d73f-e718-40c8-b22a-a4e52ca04a1f" />
+
 
 ---
 
@@ -176,9 +197,9 @@ JOIN 개념이 헷갈린다면 아래 자료를 함께 참고해도 좋습니다
 # 5️⃣ 이번 주 회고
 
 ```
-1. INNER JOIN과 LEFT JOIN의 차이를 어떻게 이해했는지:
-2. JOIN 문제를 풀 때 가장 먼저 확인해야 할 것:
-3. JOIN 결과가 예상과 달랐던 경험이 있다면:
+1. INNER JOIN과 LEFT JOIN의 차이를 어떻게 이해했는지: INNER JOIN은 두 테이블에서 일치하는 행만 가져오고 LEFT JOIN은 왼쪽 테이블의 모든 행을 유지하고 일치하는 값이 없으면 NULL로 표시한다
+2. JOIN 문제를 풀 때 가장 먼저 확인해야 할 것: KEY 값과 어떤 테이블을 기준으로 할지 확인한다.
+3. JOIN 결과가 예상과 달랐던 경험이 있다면: X
 ```
 
 수고하셨습니다!
